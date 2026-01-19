@@ -1,0 +1,10 @@
+node_modules
+package-lock.json
+venv/
+.venv/
+__pycache__/
+*/.env
+cache/
+*.egg-info/
+contracts/
+validator_data.db

@@ -1,0 +1,8 @@
+setuptools>=70
+requests>=2
+bittensor>=9.11
+
+# Casino TAO dependencies
+web3>=6.0.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
