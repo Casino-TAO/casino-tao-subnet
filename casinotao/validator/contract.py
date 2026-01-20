@@ -19,7 +19,7 @@ except ImportError:
     bt.logging.warning("web3 not installed. Install with: pip install web3")
 
 from casinotao.core.const import (
-    casinotao_CONTRACT_ADDRESS,
+    CASINOTAO_CONTRACT_ADDRESS,
     BITTENSOR_EVM_RPC,
     BLOCKS_PER_DAY,
     TIME_DECAY_WEIGHTS,
@@ -68,7 +68,7 @@ class ContractClient:
             raise ImportError("web3 is required. Install with: pip install web3")
         
         self.rpc_url = rpc_url or BITTENSOR_EVM_RPC
-        self.contract_address = contract_address or casinotao_CONTRACT_ADDRESS
+        self.contract_address = contract_address or CASINOTAO_CONTRACT_ADDRESS
         
         self.w3 = Web3(Web3.HTTPProvider(self.rpc_url))
         self.contract = self.w3.eth.contract(

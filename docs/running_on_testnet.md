@@ -52,12 +52,12 @@ When testing, use testnet configuration in `taocasino/core/const.py`:
 
 ```python
 # Testnet configuration
-casinotao_CONTRACT_ADDRESS = "0x074A77a378D6cA63286CD4A020CdBfc9696132a7"
+CASINOTAO_CONTRACT_ADDRESS = "0x074A77a378D6cA63286CD4A020CdBfc9696132a7"
 BITTENSOR_EVM_RPC = "https://test.chain.opentensor.ai"
 BITTENSOR_EVM_CHAIN_ID = 945
 
 # Comment out mainnet settings
-# casinotao_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
+# CASINOTAO_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
 # BITTENSOR_EVM_RPC = "https://lite.chain.opentensor.ai"
 # BITTENSOR_EVM_CHAIN_ID = 964
 ```
@@ -264,7 +264,7 @@ Point to local endpoints in `const.py`:
 
 ```python
 BITTENSOR_EVM_RPC = "http://localhost:8545"
-casinotao_CONTRACT_ADDRESS = "<DEPLOYED_ADDRESS>"
+CASINOTAO_CONTRACT_ADDRESS = "<DEPLOYED_ADDRESS>"
 ```
 
 ---
@@ -277,7 +277,7 @@ When ready for mainnet:
 
 ```python
 # In taocasino/core/const.py
-casinotao_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
+CASINOTAO_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
 BITTENSOR_EVM_RPC = "https://lite.chain.opentensor.ai"
 BITTENSOR_EVM_CHAIN_ID = 964
 ```

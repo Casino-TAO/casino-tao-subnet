@@ -101,7 +101,7 @@ python -c "import bittensor; import casinotao; print('Installation successful!')
 
 ```python
 # Contract address (mainnet)
-casinotao_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
+CASINOTAO_CONTRACT_ADDRESS = "0x3b68322FC1Cb27A2c82477E86cbDde2E4850eE93"
 
 # RPC endpoint
 BITTENSOR_EVM_RPC = "https://lite.chain.opentensor.ai"

@@ -4,12 +4,12 @@
 # Constants for Casino TAO validator
 
 # Casino TAO Contract on Bittensor EVM Testnet
-# casinotao_CONTRACT_ADDRESS = "0x..."
+# CASINOTAO_CONTRACT_ADDRESS = "0x074A77a378D6cA63286CD4A020CdBfc9696132a7"
 # BITTENSOR_EVM_RPC = "https://test.chain.opentensor.ai"
 # BITTENSOR_EVM_CHAIN_ID = 945
 
 # Mainnet (uncomment when deploying to mainnet)
-casinotao_CONTRACT_ADDRESS = "0x..."
+CASINOTAO_CONTRACT_ADDRESS = "0x8cfb178af3ADfd120747FA04F978F18133DAcDb5"
 BITTENSOR_EVM_RPC = "https://lite.chain.opentensor.ai"
 BITTENSOR_EVM_CHAIN_ID = 964
 
