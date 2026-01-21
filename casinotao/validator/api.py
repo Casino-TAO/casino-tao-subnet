@@ -31,17 +31,21 @@ from casinotao.validator.database import (
     get_all_wallet_mappings,
 )
 
-# Signature verification imports
+# Signature verification imports - CRITICAL for security
 try:
     from binascii import unhexlify
     from substrateinterface import Keypair
     SIGNATURE_VERIFICATION_AVAILABLE = True
 except ImportError as e:
     SIGNATURE_VERIFICATION_AVAILABLE = False
-    bt.logging.warning(f"substrateinterface import failed: {e}. Signature verification disabled.")
+    bt.logging.error(
+        f"⚠️  CRITICAL: substrateinterface import failed: {e}. "
+        "Wallet mapping endpoint will reject all requests. "
+        "Install with: pip install substrateinterface"
+    )
 except Exception as e:
     SIGNATURE_VERIFICATION_AVAILABLE = False
-    bt.logging.warning(f"Signature verification setup error: {e}")
+    bt.logging.error(f"⚠️  CRITICAL: Signature verification setup error: {e}")
 
 
 # FastAPI app instance
@@ -118,8 +122,8 @@ def _verify_coldkey_signature(coldkey: str, message: str, signature: str) -> boo
         return is_valid
         
     except ImportError as e:
-        bt.logging.warning(f"Signature verification not available ({e}) - accepting without verification")
-        return True  # Accept without verification if library not available
+        bt.logging.error(f"Signature verification not available ({e}) - REJECTING for security")
+        return False  # NEVER accept without verification - security critical
     except Exception as e:
         bt.logging.error(f"Signature verification failed: {e}")
         return False
@@ -400,6 +404,14 @@ if FASTAPI_AVAILABLE:
         - data.verified: UI validation passed (server still verifies)
         """
         try:
+            # SECURITY: Reject all requests if signature verification is unavailable
+            if not SIGNATURE_VERIFICATION_AVAILABLE:
+                bt.logging.error("Wallet mapping rejected: signature verification not available")
+                raise HTTPException(
+                    status_code=503,
+                    detail="Signature verification unavailable. Install substrateinterface."
+                )
+            
             # Validate request type
             if request.type != "wallet_mapping":
                 raise HTTPException(
