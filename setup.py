@@ -17,6 +17,7 @@ setup(
         "web3>=6.0.0",
         "fastapi>=0.100.0",
         "uvicorn>=0.23.0",
+        "substrate-interface",
     ],
     entry_points={
         "console_scripts": [
