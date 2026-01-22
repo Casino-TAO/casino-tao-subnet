@@ -181,14 +181,15 @@ class ContractClient:
                     }
                     bet_events.append(bet_event)
                     
-                    # Cache the event
+                    # Cache the event with contract address
                     cache_bet_event(
                         evm_address=address.lower(),
                         game_id=bet_event['game_id'],
                         amount=float(self.w3.from_wei(bet_event['amount'], 'ether')),
                         side=bet_event['side'],
                         block_number=bet_event['block_number'],
-                        timestamp=bet_event['timestamp']
+                        timestamp=bet_event['timestamp'],
+                        contract_address=self.contract_address
                     )
                 except Exception as decode_err:
                     bt.logging.debug(f"Error decoding log: {decode_err}")
@@ -214,9 +215,13 @@ class ContractClient:
             current_block = self.get_current_block()
             from_block = max(0, current_block - (BLOCKS_PER_DAY * 7))
             
-            # First check cache
+            # First check cache (only for current contract)
             seven_days_ago = int((datetime.utcnow() - timedelta(days=7)).timestamp())
-            cached_events = get_cached_bet_events(address.lower(), seven_days_ago)
+            cached_events = get_cached_bet_events(
+                address.lower(), 
+                seven_days_ago,
+                contract_address=self.contract_address
+            )
             
             if cached_events:
                 # Get only new events since last cached
