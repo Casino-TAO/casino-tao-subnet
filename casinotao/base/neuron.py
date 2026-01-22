@@ -144,7 +144,6 @@ class BaseNeuron(ABC):
 
     def should_set_weights(self) -> bool:
         # Don't set weights on initialization.
-        return False
         
         if self.step == 0:
             return False
