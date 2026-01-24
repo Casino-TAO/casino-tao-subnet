@@ -184,7 +184,11 @@ async def forward(self):
         )
         self.update_scores(reward_array.tolist(), uids)
     else:
-        bt.logging.info("No miners with betting volume - scores unchanged")
+        bt.logging.info("No miners with betting volume - running burn code")
+        reward_array = np.zeros(self.metagraph.n, dtype=np.float32)
+        reward_array[0] = 1.0
+        uids = list(range(self.metagraph.n))
+        self.update_scores(reward_array.tolist(), uids)
     
     # Periodic cleanup of old cached events
     if self.step % 100 == 0:
